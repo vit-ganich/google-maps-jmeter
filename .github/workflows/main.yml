@@ -1,13 +1,6 @@
 name: Test JMeter
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-      - test/**
   workflow_dispatch:
     inputs:
       threads:

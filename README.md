@@ -45,6 +45,27 @@ It will generate HTML report in the `reports` folder.
 
 ---
 
+### CI configuration
+
+```yaml
+on:
+  workflow_dispatch:
+    inputs:
+      threads:
+        type: number
+        required: true
+        description: Threads number
+        default: 5
+```
+
+Only workflow_dispatch trigger is enabled. The amount of threads can be specified.  
+Test report is stored in artifacts.
+
+> This CI configuration is created for demonstration purposes. It is not recommended to run a real perfomance testing from the CI jobs.  
+> It is better to run tests from the local machine to avoid possible performance and network issues, connected with the AWS/Azure instances.
+
+---
+
 ### How to set the threads number correctly?
 
 The number of threads or concurrent users that a system can handle depends on various factors:
@@ -55,23 +76,23 @@ The number of threads or concurrent users that a system can handle depends on va
 
 Here are some considerations when determining the appropriate number of threads for a system:
 
-> _Performance Requirements_: Define the desired performance metrics for your system, such as response time, throughput, and resource utilization.  
->  These requirements will influence the number of threads you need to handle the expected workload.
+> _Performance Requirements_: Define the desired performance metrics for your system, such as response time, throughput, and resource utilization.
+> These requirements will influence the number of threads you need to handle the expected workload.
 
-> _Planned Daily Visitors_: Estimate the number of visitors your system is expected to handle per day.  
->  This will give you an idea of the potential concurrent users and the load on the system.
+> _Planned Daily Visitors_: Estimate the number of visitors your system is expected to handle per day.
+> This will give you an idea of the potential concurrent users and the load on the system.
 
-> _Workload Characteristics_: Understand the nature of the workload your system will encounter.  
->  Different types of applications (e.g., web applications, API services, background tasks) may have varying concurrency patterns and resource requirements.
+> _Workload Characteristics_: Understand the nature of the workload your system will encounter.
+> Different types of applications (e.g., web applications, API services, background tasks) may have varying concurrency patterns and resource requirements.
 
-> _Hardware and Infrastructure_: Consider the capabilities of your hardware and infrastructure.  
->  Factors like CPU cores, memory, network bandwidth, and storage can influence the number of concurrent users your system can handle effectively.
+> _Hardware and Infrastructure_: Consider the capabilities of your hardware and infrastructure.
+> Factors like CPU cores, memory, network bandwidth, and storage can influence the number of concurrent users your system can handle effectively.
 
-> _Software Architecture_: Evaluate the design and architecture of your software.  
->  Some applications are naturally more scalable and can handle a larger number of concurrent users by design. Ensure your software can efficiently utilize multiple threads and scale horizontally if necessary.
+> _Software Architecture_: Evaluate the design and architecture of your software.
+> Some applications are naturally more scalable and can handle a larger number of concurrent users by design. Ensure your software can efficiently utilize multiple threads and scale horizontally if necessary.
 
-> _Load Testing and Performance Tuning_: Perform load testing to simulate realistic workloads and measure system performance under different loads.  
->  Adjust the number of threads and tune your system based on the observed results to find the optimal balance between performance and resource utilization.
+> _Load Testing and Performance Tuning_: Perform load testing to simulate realistic workloads and measure system performance under different loads.
+> Adjust the number of threads and tune your system based on the observed results to find the optimal balance between performance and resource utilization.
 
 The optimal number of threads may vary depending on your specific system and requirements. It's important to monitor system performance in production and be prepared to scale resources, adjust thread counts, or optimize code as needed to ensure smooth operation under real-world conditions.
 
@@ -85,3 +106,7 @@ The optimal number of threads may vary depending on your specific system and req
 - Configure firewall settings to allow JMeter communication.
 - Set up proxy settings if required.
 - Install JMeter plugins correctly and review their documentation.
+
+```
+
+```
