@@ -8,6 +8,17 @@ on:
     branches:
       - main
       - test/**
+  workflow_dispatch:
+    inputs:
+      threads:
+        type: number
+        required: true
+        description: Threads number
+        default: 5
+
+env:
+  CI: true
+  THREADS: ${{ github.event.inputs.threads }}
 
 jobs:
   action_build:
@@ -15,12 +26,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Run JMeter Action on a test
+      - name: "Run JMeter: ${{ github.event.inputs.threads }} threads"
         uses: rbhadti94/apache-jmeter-action@v0.7.0
         with:
           testFilePath: tests/smoke.jmx
           outputReportsFolder: reports/
-          args: "--loglevel INFO"
+          args: "--loglevel INFO -Jthreads=${{ github.event.inputs.threads }}"
 
       - uses: actions/upload-artifact@v3
         with:
