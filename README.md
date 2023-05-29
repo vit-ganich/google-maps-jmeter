@@ -1,3 +1,5 @@
+![build](https://github.com/vit-ganich/google-maps-jmeter/actions/workflows/main.yml/badge.svg)
+
 # google-maps-jmeter
 
 Google Maps basic performance test example with JMeter.
